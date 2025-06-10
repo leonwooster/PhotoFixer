@@ -1,0 +1,71 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-versions
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+*.log
+*.lock
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+
+# Flutter generated files
+**/generated_plugin_registrant.dart
+**/*.g.dart
+**/*.freezed.dart
+
+# Android/iOS
+android/.gradle/
+android/app/debug/
+android/app/profile/
+android/app/release/
+android/local.properties
+ios/Pods/
+ios/Flutter/
+ios/Runner.xcworkspace/
+ios/Runner.xcodeproj/
+ios/Podfile.lock
+
+# Firebase/Secrets
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+*.crt
+*.der
+.env
+.env.*
+.firebase/
+
+# Python backend (if in monorepo)
+backend/__pycache__/
+backend/*.pyc
+backend/.venv/
+backend/venv/
+backend/env/
+backend/.env
+backend/.pytest_cache/
+backend/.mypy_cache/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+
+# Misc
+*.orig
