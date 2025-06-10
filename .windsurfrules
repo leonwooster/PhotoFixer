@@ -1,0 +1,91 @@
+name: flutter-photo-restoration-app
+version: 1.0.0
+description: Development standards, SOPs, and best practices for a Flutter-based mobile app.
+
+development_stack:
+  frontend: Flutter (Dart)
+  backend: Python (FastAPI or Flask)
+  ml_integration: REST APIs using PyTorch models
+  state_management: Riverpod (preferred), alternatively Bloc
+  dependency_management: pubspec.yaml
+  platform_support: Android, iOS
+
+project_structure:
+  lib/
+    - core/               # Shared services, constants, utils
+    - models/             # Data models (immutable, JSON serializable)
+    - features/
+        - <feature_name>/ # Per-feature structure
+            - views/
+            - widgets/
+            - providers/
+            - services/
+    - services/           # Global app services (e.g., AuthService)
+    - routes/             # Route management
+    - ui/                 # Global UI elements
+    - main.dart           # Entry point
+
+standard_operating_procedures:
+  - Write unit and widget tests for all UI logic
+  - CI must pass (e.g., GitHub Actions, Bitrise) before PR can be merged
+  - Code coverage > 80% minimum threshold
+  - Linting via `flutter_lints`, `very_good_analysis`, or `pedantic`
+  - Pre-commit hooks: format, analyze, test
+  - Code reviews required (2 reviewers per PR)
+
+best_practices:
+  - Use const constructors where possible
+  - Avoid logic in UI widgets — delegate to providers/services
+  - Keep widgets small and composable
+  - All network calls must use a service layer and return typed results
+  - Use `freezed` and `json_serializable` for immutability and parsing
+  - Prefer `Future<void>` for async methods that don't return data
+
+design_patterns:
+  - State Management: Riverpod or Bloc
+  - Networking: Repository pattern
+  - Error Handling: Result wrapper (e.g., `Either<Failure, Success>`)
+  - UI Layer: MVVM-friendly or feature-first architecture
+  - Dependency Injection: Use `riverpod` or `get_it`
+
+error_handling:
+  - All service and network calls must be wrapped in try-catch
+  - Surface known error messages to user via Snackbar/Dialog
+  - Log unhandled exceptions to crash reporting tool (e.g., Firebase Crashlytics)
+  - Use `Either` or custom `Result` types to propagate errors safely
+
+security:
+  authentication:
+    - Use Firebase Auth (or OAuth/OpenID compliant provider)
+    - Store tokens securely with `flutter_secure_storage`
+    - Biometric login optional for returning users
+  authorization:
+    - Role-based access (RBAC) enforced via backend tokens
+    - APIs must validate scopes/roles
+    - App must handle 401/403 by forcing logout or showing error
+  general:
+    - Never log or store raw passwords or sensitive data
+    - Use HTTPS for all network requests
+    - Disable debugPrint logs in production builds
+    - Secure file access (e.g., processed image cache)
+
+versioning:
+  - Follow semantic versioning (semver.org)
+  - All releases tagged with git version and changelog entry
+
+deployment:
+  - Use `flavor` setup for dev, staging, prod
+  - Separate Firebase project per environment
+  - Protect production release keys; use CI/CD secrets
+
+tools:
+  - Formatter: Dart Formatter
+  - Linter: flutter_lints or very_good_analysis
+  - Testing: flutter_test, mockito, integration_test
+  - CI/CD: GitHub Actions or Bitrise
+
+notes:
+  - Treat warnings as errors
+  - Ensure accessibility (contrast, font sizes, tap areas)
+  - Build once, test often, ship with confidence 🚀
+
