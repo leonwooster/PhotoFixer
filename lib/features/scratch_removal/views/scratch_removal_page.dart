@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../providers/scratch_removal_provider.dart';
 import '../widgets/upload_picker.dart';
 import '../widgets/scratch_preview.dart';
 import '../widgets/remove_button.dart';
-import '../providers/scratch_removal_provider.dart';
 
 class ScratchRemovalPage extends ConsumerWidget {
   const ScratchRemovalPage({Key? key}) : super(key: key);
@@ -11,6 +11,8 @@ class ScratchRemovalPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(scratchRemovalProvider);
+    final notifier = ref.read(scratchRemovalProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Scratch & Blemish Removal')),
       body: Padding(

@@ -10,10 +10,12 @@ dependencies:
   flutter_riverpod: ^2.0.0
   image_picker: ^1.0.0
   http: ^1.0.0
+flutter:
+  assets:
+    - models/lama.pt
+  uses-material-design: true
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.0.0
   very_good_analysis: ^5.0.0
-flutter:
-  uses-material-design: true

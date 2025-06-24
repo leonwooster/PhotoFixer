@@ -1,11 +1,15 @@
 import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/scratch_removal_service.dart';
+import '../services/lama_scratch_removal_service.dart';
 import 'package:image_picker/image_picker.dart';
+
+final lamaScratchRemovalServiceProvider = Provider<LamaScratchRemovalService>((ref) {
+  return LamaScratchRemovalService();
+});
 
 class ScratchRemovalState {
   final Uint8List? originalImage;
-  final Uint8List? processedImage;
+  final Uint8List? restoredImage;
   final bool isLoading;
   final String? error;
   ScratchRemovalState({
