@@ -13,18 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Setup Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          flutter-version: '3.32.0'
 
       - name: Install dependencies
         run: flutter pub get
-
-      # Uncomment this step to verify formatting
-      # - name: Verify formatting
-      #   run: flutter format --set-exit-if-changed .
 
       - name: Analyze project source
         run: flutter analyze
@@ -32,6 +27,32 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      # Optional: Build APK or iOS app
-      # - name: Build APK
-      #   run: flutter build apk --debug
+      - name: Send email on success
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: live.smtp.mailtrap.io
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: xx
+          subject: ✅ Flutter CI Passed
+          to: leonwoo@hotmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            The Flutter CI workflow completed successfully on branch `${{ github.ref }}`.
+            ✅ All checks passed.
+
+      - name: Send email on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.office365.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: xx
+          subject: ❌ Flutter CI Failed
+          to: leonwoo@hotmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+            The Flutter CI workflow failed on branch `${{ github.ref }}`.
+            ❌ Please check the logs for details.
