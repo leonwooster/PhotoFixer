@@ -46,7 +46,7 @@ jobs:
         if: failure()
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.office365.com
+          server_address: live.smtp.mailtrap.io
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: xx
